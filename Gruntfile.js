@@ -27,26 +27,17 @@ module.exports = function(grunt) {
             }
         },
         copy: {
-            index: {
-                src: 'src/<%= pkg.name %>/index.html',
-                dest: 'build/index.html',
-                expand: false
-            },
-            assets: {
+            sources: {
                 cwd: 'src/<%= pkg.name %>',
-                src: 'assets/**',
+                src: ['assets/**', 'index.html'],
                 dest: 'build/',
                 expand: true
             },
-            phaser: {
-                src: './node_modules/phaser/build/phaser.min.js',
-                dest: 'build/js/phaser.min.js',
-                expand: false
-            },
-            phasermap: {
-                src: './node_modules/phaser/build/phaser.map',
-                dest: 'build/js/phaser.map',
-                expand: false
+            libs: {
+                cwd: 'node_modules/phaser/build',
+                src: ['phaser.min.js'],
+                dest: 'build/js',
+                expand: true
             }
         },
         watch: {
