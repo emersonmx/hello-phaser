@@ -1,13 +1,13 @@
 {
   "name": "hello-phaser",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A simple Phaser game",
+  "main": "build/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Emerson Max de Medeiros Silva",
+  "license": "MIT",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-concat": "^1.0.1",
