@@ -1,13 +1,7 @@
 class HelloGame {
-    game: Phaser.Game;
-    platforms: Phaser.Group;
-    stars: Phaser.Group;
-    player: Phaser.Sprite;
-    cursors: Phaser.CursorKeys;
-    score: number = 0;
-    scoreText: Phaser.Text;
-
     constructor() {
+        this.score = 0;
+        this.scoreText = null;
         this.game = new Phaser.Game(800, 600, Phaser.AUTO, 'content', this);
     }
 
@@ -18,7 +12,7 @@ class HelloGame {
         this.game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
     }
 
-    create() { 
+    create() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.add.sprite(0, 0, 'sky');
 
@@ -33,7 +27,7 @@ class HelloGame {
             star = this.stars.create(i * 70, 0, 'star');
             star.body.gravity.y = 6;
             star.body.bounce.y = 0.7 + Math.random() * 0.2;
-        } 
+        }
 
         var ground = this.platforms.create(0, this.game.world.height - 64, 'ground');
         ground.scale.setTo(2, 2);
@@ -74,7 +68,7 @@ class HelloGame {
         } else if (this.cursors.right.isDown) {
             this.player.body.velocity.x = 150;
             this.player.animations.play('right');
-        } else { 
+        } else {
             this.player.animations.stop();
             this.player.frame = 4;
         }
@@ -93,5 +87,5 @@ class HelloGame {
 }
 
 window.onload = () => {
-    var game = new HelloGame();
+    new HelloGame();
 }
