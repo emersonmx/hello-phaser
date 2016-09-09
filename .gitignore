@@ -1,0 +1,6 @@
+.vimproject
+.idea/
+.sass-cache/
+node_modules/
+build/
+
