@@ -22,18 +22,18 @@ export default class GameState {
         this.platforms = this.game.add.group();
         this.platforms.enableBody = true;
 
-        var star = null;
-        for (var i = 0; i < 12; ++i) {
+        let star = null;
+        for (let i = 0; i < 12; ++i) {
             star = this.stars.create(i * 70, 0, 'star');
             star.body.gravity.y = 6;
             star.body.bounce.y = 0.7 + Math.random() * 0.2;
         }
 
-        var ground = this.platforms.create(0, this.game.world.height - 64, 'ground');
+        let ground = this.platforms.create(0, this.game.world.height - 64, 'ground');
         ground.scale.setTo(2, 2);
         ground.body.immovable = true;
 
-        var ledge = this.platforms.create(400, 400, 'ground');
+        let ledge = this.platforms.create(400, 400, 'ground');
         ledge.body.immovable = true;
         ledge = this.platforms.create(-150, 250, 'ground');
         ledge.body.immovable = true;
