@@ -13,7 +13,7 @@ module.exports = function(grunt) {
                     ]]
                 },
                 files: {
-                    'build/js/<%= pkg.name %>.js': 'src/<%= pkg.name %>/js/main.js'
+                    'build/js/<%= pkg.name %>.js': 'src/<%= pkg.name %>/js/Main.js'
                 }
             }
         },

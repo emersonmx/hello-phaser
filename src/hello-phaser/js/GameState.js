@@ -1,8 +1,8 @@
-class HelloGame {
-    constructor() {
+export default class GameState {
+    constructor(game) {
         this.score = 0;
         this.scoreText = null;
-        this.game = new Phaser.Game(800, 600, Phaser.AUTO, 'content', this);
+        this.game = game;
     }
 
     preload() {
@@ -84,8 +84,4 @@ class HelloGame {
         this.score += 10;
         this.scoreText.text = 'Score: ' + this.score;
     }
-}
-
-window.onload = () => {
-    new HelloGame();
 }
