@@ -1,5 +1,7 @@
-export default class GameState {
+export default class GameState extends Phaser.State {
     constructor() {
+        super();
+
         this.score = 0;
         this.scoreText = null;
     }
