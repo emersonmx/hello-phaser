@@ -1,8 +1,7 @@
 export default class GameState {
-    constructor(game) {
+    constructor() {
         this.score = 0;
         this.scoreText = null;
-        this.game = game;
     }
 
     preload() {
@@ -13,7 +12,7 @@ export default class GameState {
     }
 
     create() {
-        this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.add.sprite(0, 0, 'sky');
 
         this.stars = this.game.add.group();
@@ -39,7 +38,7 @@ export default class GameState {
         ledge.body.immovable = true;
 
         this.player = this.game.add.sprite(32, this.game.world.height - 150, 'dude');
-        this.game.physics.arcade.enable(this.player);
+        this.physics.arcade.enable(this.player);
 
         this.player.body.bounce.y = 0.2;
         this.player.body.gravity.y = 300;
@@ -52,14 +51,14 @@ export default class GameState {
             fontSize: '32px', fill: '#000'
         });
 
-        this.cursors = this.game.input.keyboard.createCursorKeys();
+        this.cursors = this.input.keyboard.createCursorKeys();
     }
 
     update() {
-        this.game.physics.arcade.collide(this.player, this.platforms);
-        this.game.physics.arcade.collide(this.stars, this.platforms);
+        this.physics.arcade.collide(this.player, this.platforms);
+        this.physics.arcade.collide(this.stars, this.platforms);
 
-        this.game.physics.arcade.overlap(this.player, this.stars, this.collectStar, null, this);
+        this.physics.arcade.overlap(this.player, this.stars, this.collectStar, null, this);
 
         this.player.body.velocity.x = 0;
         if (this.cursors.left.isDown) {
