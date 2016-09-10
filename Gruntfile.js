@@ -34,11 +34,11 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: 'src/<%= pkg.name %>/js/**/*.js',
-                tasks: ['browserify']
+                tasks: ['browserify', 'notify:javascript']
             },
             sass: {
                 files: 'src/<%= pkg.name %>/sass/**/*.scss',
-                tasks: ['sass']
+                tasks: ['sass', 'notify:sass']
             },
             dist: {
                 files: [
@@ -47,7 +47,11 @@ module.exports = function(grunt) {
                     'node_modules/phaser/build/phaser.min.js',
                     'node_modules/phaser/build/phaser.map'
                 ],
-                tasks: ['copy']
+                tasks: ['copy', 'notify:copy']
+            },
+            build: {
+                files: 'build/**/*',
+                tasks: ['notify:browserSync']
             }
         },
         browserSync: {
@@ -62,6 +66,33 @@ module.exports = function(grunt) {
                     server: 'build/'
                 }
             }
+        },
+        notify: {
+            server: {
+                options: {
+                    message: 'Server is ready!'
+                }
+            },
+            browserSync: {
+                options: {
+                    message: 'Browser synchronized'
+                }
+            },
+            sass: {
+                options: {
+                    message: 'Sass build finished'
+                }
+            },
+            javascript: {
+                options: {
+                    message: 'Javascript build finished'
+                }
+            },
+            copy: {
+                options: {
+                    message: 'Copying files to "build" finished'
+                }
+            }
         }
     });
 
@@ -71,9 +102,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-notify');
 
     // Default task(s).
     grunt.registerTask('default', [
-        'copy', 'sass', 'browserify', 'browserSync', 'watch'
+        'copy', 'sass', 'browserify', 'browserSync', 'notify:server', 'watch'
     ]);
 };
